@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Coding for GOOD // API Example 1 - Instagram</title>
+    <link rel="stylesheet" type="text/css" href="http://reset5.googlecode.com/hg/reset.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+</script>
+ <script type="text/javascript">
+
+   $(document).ready(function () {
+     var tag = "kitty";
+     var count = 4;
+     var access_token = '22033045.ea9028a.eec94286a2e049429fe51c3fbc95db20';
+     var access_parameters = {
+         access_token : access_token
+
+     };
+
+     function grabImages(access_parameters) {
+         var instagramUrl = 'https://api.instagram.com/v1/tags/' + tag + '/media/recent?callback=?&count=' + count;
+
+         $.getJSON(instagramUrl, access_parameters, onDataLoaded);
+
+     }
+
+     function onDataLoaded(instagram_data) {
+         // instagram_data.meta is where the secret messages from Instagram live
+         // and instagram_data.meta.code holds the status code of the request
+         // 404 means nothing was found, and 200 means everything is all good so...
+
+         if (instagram_data.meta.code == 200) {
+             // create a variable that holds all returned payload
+             var photos = instagram_data.data;
+
+             //as long as that variable holds data (does not = ) then...
+
+             if (photos.length > 0) {
+                 //since there are multiple objects in the payload we have
+                 //to create a loop
+                 for (var key in photos) {
+                     //we create a variable for one object
+                     var photo = photos[key];
+                     //then we create and append to the DOM an  element in jQuery
+                     //the source of which is the thumbnail of the photo
+                     $('#target').append('<img= src"' +  photo.images.thumbnail.url + '">');
+                 }
+             } 
+             else  {
+                 //if the photos variable doesn’t hold data
+                 $('#target').append("Hmm.  I couldn’t find anything!");
+             }
+            }   else  {
+               /*  //if we didn’t get a 200 (success) request code from instagram
+                 //then we display instagram’s error message instagram
+                 var error = data.meta.error_message;
+                 $('#target').append('Something happened, Instagram said: ' + error);
+             */}
+         }
+     grabImages(access_parameters);
+ });
+
+  </script>
+  </head>
+  <body>
+  	<div id="target">
+  </body>
+</html>
