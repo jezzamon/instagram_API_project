@@ -19,7 +19,7 @@ $(document).ready(function () {
 
   
     var instagramAPI = "https://api.instagram.com/v1/tags/" + tag + "/media/recent/?client_id=0c16edcd249a46468fb20afd4c31fd44" /* + "&count=20"*/;
-  //the animal variable sets the tag which it wil"/v1/tags/" + tag + "/media/recent/?client_id=" + instagram.clientID + "&count=20",l search on  flickr from the clicked button which has the text, using the .text() command
+ 
     
     var tag = $searchField.val();
     
@@ -35,7 +35,6 @@ $(document).ready(function () {
       url = data.pagination.next_url;
     var photoHTML = '<ul>';
 
-   //Using .each, loop a list tag with photos from flickr, using the property of .items and in .items the property of .link (for the link of pic ) and .media for the thumbnail. 
     $.each (data.data, function (i, photo) {
       photoHTML += '<li class="grid-25 tablet-grid-50">';
       photoHTML += '<a href="' + photo.standard_resolution + '" class="image">';
@@ -44,7 +43,7 @@ $(document).ready(function () {
       //close the <ul> tag on photoHTML
     photoHTML += '</ul>';
 
-      //add all the data as html from flickr into HTML div with the #ID "photos" , using the command .html and the variable of photoHTML that has all the formatting that was set in the .each loop.
+      
     $('#photos').html(photoHTML);
     $searchField.prop("disabled", false);
     $submitButton.attr("disabled",false).val("Search");
@@ -58,14 +57,3 @@ $(document).ready(function () {
 });  //end document ready
 
 //alternate .getJSON
-
-/*$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-          {
-            tags:animal,
-            format:"json"
-          },
-            function(data){
-            }
-         );
-         */
-
