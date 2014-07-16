@@ -18,7 +18,7 @@ $(document).ready(function () {
 //add the three variables needed for the getJSON function - .getJSON(url, data, callback)
 
   
-    var instagramAPI = "https://api.instagram.com/v1/tags/" + tag + "/media/recent/?client_id=0c16edcd249a46468fb20afd4c31fd44" /* + "&count=20"*/;
+    var instagramAPI = "https://api.instagram.com/v1/tags/" + tag + "/media/recent/?client_id=0c16edcd249a46468fb20afd4c31fd44&callback=displayPhotos" /* + "&count=20"*/;
  
     
     var tag = $searchField.val();
