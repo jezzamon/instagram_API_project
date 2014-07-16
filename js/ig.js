@@ -16,8 +16,9 @@ $(document).ready(function () {
 
  
 //add the three variables needed for the getJSON function - .getJSON(url, data, callback)
+
   
-    var instagramAPI = "api.instagram.com/v1/tags/" + tag + "/media/recent/?client_id=0c16edcd249a46468fb20afd4c31fd44" /* + "&count=20"*/;
+    var instagramAPI = "https://api.instagram.com/v1/tags/" + tag + "/media/recent/?client_id=0c16edcd249a46468fb20afd4c31fd44" /* + "&count=20"*/;
   //the animal variable sets the tag which it wil"/v1/tags/" + tag + "/media/recent/?client_id=" + instagram.clientID + "&count=20",l search on  flickr from the clicked button which has the text, using the .text() command
     
     var tag = $searchField.val();
